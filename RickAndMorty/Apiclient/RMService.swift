@@ -11,6 +11,7 @@ enum RMServiceError: Error {
     case none
     case failedtoCreateRequest
     case faildedtoGetData
+    case failStatusCode
 }
 
 final class RMService {
@@ -20,15 +21,34 @@ final class RMService {
     typealias Callback<T> = (Result<T, Error>) -> Void
     
     private init() {}
+    private var tokenSesion: String = ""
     
+    public func detToken(from autToken: String) {
+        tokenSesion = autToken
+    }
     // MARK: - Private
     private func request(from rmRequest: RMRequest) -> URLRequest? {
         guard let url = rmRequest.url else {
             return nil
         }
         
+        /// Set Http method Selection
         var request = URLRequest (url: url)
             request.httpMethod = rmRequest.httpMethodSelection.rawValue
+        
+        /// Set Http Body if this is Available
+        if rmRequest.isBodyData {
+            request.httpBody = rmRequest.getBodyHttpData()
+        }
+        
+        /// add headers and Rerturn URLRequest por urlSession
+        return addHttpHeaderFields(urlRequest: request)
+    }
+    
+    private func addHttpHeaderFields( urlRequest: URLRequest) -> URLRequest{
+        var request = urlRequest
+            request.setValue("Content-Type", forHTTPHeaderField: "application/json")
+            request.setValue("Authorization", forHTTPHeaderField: tokenSesion)
         return request
     }
     
@@ -43,10 +63,15 @@ final class RMService {
             return
         }
         
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
+        let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             
             guard let data = data, error == nil else {
                 callback(.failure(error ?? RMServiceError.faildedtoGetData))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, (200...300) ~= response.statusCode  else {
+                callback(.failure(error ?? RMServiceError.failStatusCode))
                 return
             }
             
@@ -60,14 +85,5 @@ final class RMService {
         }
         
         task.resume()
-    }
-}
-
-extension RMService {
-    // More simple and clean consult
-    func getAllCharacters(callback: @escaping Callback<RMGetAllCharactersResponse>) {
-//        here whants to setup request if we neded, example if we net another methotd like Post
-//     // MARK: - Example change httpMethod  ->  let request = RMRequest(endPoint: .character, httpMethodSelection: .post)
-        execute(.listOfCharactersRequest, expecting: RMGetAllCharactersResponse.self, callback: callback)
     }
 }

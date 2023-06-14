@@ -27,7 +27,7 @@ final class RMRequest {
     /// Query arguments for Api
     private let queryParameters: [URLQueryItem]
     
-    /// Constructed url for the  api request in String, we want to do the same for send data in the body or header
+    /// Constructed url for the  api request in String, we need to do the same for send data in the body or header
     private var urlString: String {
         var string = Constants.baseURL
         string += "/"
@@ -51,6 +51,9 @@ final class RMRequest {
         return string
     }
     
+    private var bodyData: [String : Any] = [:]
+    
+    public var isBodyData: Bool = false
     /// Constructed Url
     public var url: URL? {
         return URL(string: urlString)
@@ -59,6 +62,18 @@ final class RMRequest {
     /// Http method
 //    public let httpMethod = "GET"
     
+    public func getBodyHttpData() -> Data {
+        if !self.bodyData.isEmpty {
+            do {
+                if let jsonData = try? JSONSerialization.data(withJSONObject: bodyData, options: []) {
+                    return jsonData
+                }
+            }
+        }
+        
+        return Data()
+    }
+    
     public var httpMethodSelection: HttpMethod = .none
     
     /// Construct Request
@@ -66,11 +81,16 @@ final class RMRequest {
     ///     - endPoint: Tarjet end point
     ///     - pathComponents: Collection of path components
     ///     - queryParameters: Collection of query parameters
-    init (endPoint: RMEndPoint, pathComponents: [String] = [], queryParameters: [URLQueryItem] = [], httpMethodSelection: HttpMethod = .get) {
+    init (endPoint: RMEndPoint, pathComponents: [String] = [],
+                               queryParameters: [URLQueryItem] = [],
+                           httpMethodSelection: HttpMethod = .get,
+                                      bodyData: [String : Any] = [:]) {
         self.endPoint = endPoint
+        self.bodyData = bodyData
         self.pathComponents = pathComponents
         self.queryParameters = queryParameters
         self.httpMethodSelection = httpMethodSelection
+        self.isBodyData = self.bodyData.isEmpty ? false : true
     }
 }
 
