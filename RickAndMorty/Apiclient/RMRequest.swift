@@ -12,11 +12,17 @@ final class RMRequest {
         static let baseURL = "https://rickandmortyapi.com/api"
     }
     
+    internal enum HttpMethod: String {
+        case none = ""
+        case get = "GET"
+        case post = "POST"
+    }
+    
     /// Setup desired endpoint
     private let endPoint: RMEndPoint
     
     /// Path componentes for Api
-    private let pathComponents: Set<String>
+    private let pathComponents: [String]
     
     /// Query arguments for Api
     private let queryParameters: [URLQueryItem]
@@ -51,16 +57,24 @@ final class RMRequest {
     }
     
     /// Http method
-    public let httpMethod = "GET"
+//    public let httpMethod = "GET"
+    
+    public var httpMethodSelection: HttpMethod = .none
     
     /// Construct Request
     ///  - Parameters:
     ///     - endPoint: Tarjet end point
     ///     - pathComponents: Collection of path components
     ///     - queryParameters: Collection of query parameters
-    init (endPoint: RMEndPoint, pathComponents: Set<String>] = [], queryParameters: [URLQueryItem] = []) {
+    init (endPoint: RMEndPoint, pathComponents: [String] = [], queryParameters: [URLQueryItem] = [], httpMethodSelection: HttpMethod = .get) {
         self.endPoint = endPoint
         self.pathComponents = pathComponents
         self.queryParameters = queryParameters
+        self.httpMethodSelection = httpMethodSelection
     }
+}
+
+extension RMRequest {
+    /// Type  of endPoint
+    static let listOfCharactersRequest = RMRequest(endPoint: .character)
 }
