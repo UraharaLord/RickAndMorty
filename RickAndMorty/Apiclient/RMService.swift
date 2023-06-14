@@ -7,25 +7,20 @@
 
 import Foundation
 
-enum RMServiceError: Error {
-    case none
-    case failedtoCreateRequest
-    case faildedtoGetData
-    case failStatusCode
-}
-
 final class RMService {
     
     static let shared = RMService()
     
+    private var tokenSesion: String = ""
     typealias Callback<T> = (Result<T, Error>) -> Void
     
-    private init() {}
-    private var tokenSesion: String = ""
+    init() {}
     
-    public func detToken(from autToken: String) {
+    /// save token in singleton instance
+    public func setToken(from autToken: String) {
         tokenSesion = autToken
     }
+    
     // MARK: - Private
     private func request(from rmRequest: RMRequest) -> URLRequest? {
         guard let url = rmRequest.url else {
