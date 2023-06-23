@@ -8,83 +8,82 @@
 import Foundation
 
 final class RMRequest {
-    private struct Constants {
+    private enum Constants {
         static let baseURL = "https://rickandmortyapi.com/api"
     }
-    
+
     internal enum HttpMethod: String {
         case none = ""
         case get = "GET"
         case post = "POST"
     }
-    
+
     /// Setup desired endpoint
     private let endPoint: RMEndPoint
-    
+
     /// Path componentes for Api
     private let pathComponents: [String]
-    
+
     /// Query arguments for Api
     private let queryParameters: [URLQueryItem]
-    
+
     /// Constructed url for the  api request in String, we need to do the same for send data in the body or header
     private var urlString: String {
         var string = Constants.baseURL
         string += "/"
         string += endPoint.rawValue
-        
+
         if !pathComponents.isEmpty {
-            pathComponents.forEach({
+            pathComponents.forEach {
                 string += "/\($0)"
-            })
+            }
         }
-        
+
         if !queryParameters.isEmpty {
             string += "?"
-            let argumentString = queryParameters.compactMap({
+            let argumentString = queryParameters.compactMap {
                 guard let value = $0.value else { return nil }
                 return "\($0.name)=\(value)"
-            }).joined(separator: "&")
+            }.joined(separator: "&")
             string += argumentString
         }
-        
+
         return string
     }
     
-    private var bodyData: [String : Any] = [:]
+    private var bodyData: [String: Any] = [:]
     
     public var isBodyData: Bool = false
     /// Constructed Url
     public var url: URL? {
         return URL(string: urlString)
     }
-    
+
     /// Http method
-//    public let httpMethod = "GET"
-    
     public func getBodyHttpData() -> Data {
-        if !self.bodyData.isEmpty {
+        if !bodyData.isEmpty {
             do {
                 if let jsonData = try? JSONSerialization.data(withJSONObject: bodyData, options: []) {
                     return jsonData
                 }
             }
         }
-        
+
         return Data()
     }
-    
+
     public var httpMethodSelection: HttpMethod = .none
-    
+
     /// Construct Request
     ///  - Parameters:
     ///     - endPoint: Tarjet end point
     ///     - pathComponents: Collection of path components
     ///     - queryParameters: Collection of query parameters
-    init (endPoint: RMEndPoint, pathComponents: [String] = [],
-                               queryParameters: [URLQueryItem] = [],
-                           httpMethodSelection: HttpMethod = .get,
-                                      bodyData: [String : Any] = [:]) {
+    init(endPoint: RMEndPoint, pathComponents: [String] = [],
+         queryParameters: [URLQueryItem] = [],
+         httpMethodSelection: HttpMethod = .get,
+         bodyData: [String: Any] = [:])
+    {
         self.endPoint = endPoint
         self.bodyData = bodyData
         self.pathComponents = pathComponents

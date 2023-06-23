@@ -8,10 +8,9 @@
 import UIKit
 
 class RMLocationViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         title = "Locations"
         navigationController?.navigationBar.prefersLargeTitles = true
     }

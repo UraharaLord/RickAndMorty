@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - RMCharacter
+
 struct RMCharacter: Codable {
     let id: Int
     let name: String

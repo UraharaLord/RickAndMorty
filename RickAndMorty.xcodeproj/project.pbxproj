@@ -23,6 +23,9 @@
 		6D73A7B12A39A1E0000B3F24 /* RMCharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D73A7B02A39A1E0000B3F24 /* RMCharacterListView.swift */; };
 		6D73A7B52A3A3593000B3F24 /* RMService+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D73A7B42A3A3593000B3F24 /* RMService+Methods.swift */; };
 		6D73A7B72A3A534F000B3F24 /* RMServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D73A7B62A3A534F000B3F24 /* RMServiceError.swift */; };
+		6D73A7BB2A3A6EDF000B3F24 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D73A7BA2A3A6EDF000B3F24 /* LoadingView.swift */; };
+		6D73A7C12A3A7448000B3F24 /* Image+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D73A7C02A3A7448000B3F24 /* Image+Extensions.swift */; };
+		6D73A7C32A3C27B0000B3F24 /* sonar-project.properties in Resources */ = {isa = PBXBuildFile; fileRef = 6D73A7C22A3C27B0000B3F24 /* sonar-project.properties */; };
 		6DEECAD32A32D1BB00B8E1E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEECAD22A32D1BB00B8E1E2 /* AppDelegate.swift */; };
 		6DEECAD52A32D1BB00B8E1E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEECAD42A32D1BB00B8E1E2 /* SceneDelegate.swift */; };
 		6DEECADA2A32D1BB00B8E1E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DEECAD82A32D1BB00B8E1E2 /* Main.storyboard */; };
@@ -71,6 +74,9 @@
 		6D73A7B02A39A1E0000B3F24 /* RMCharacterListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMCharacterListView.swift; sourceTree = "<group>"; };
 		6D73A7B42A3A3593000B3F24 /* RMService+Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RMService+Methods.swift"; sourceTree = "<group>"; };
 		6D73A7B62A3A534F000B3F24 /* RMServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMServiceError.swift; sourceTree = "<group>"; };
+		6D73A7BA2A3A6EDF000B3F24 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = RickAndMorty/Commons/LoadingView.swift; sourceTree = SOURCE_ROOT; };
+		6D73A7C02A3A7448000B3F24 /* Image+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extensions.swift"; sourceTree = "<group>"; };
+		6D73A7C22A3C27B0000B3F24 /* sonar-project.properties */ = {isa = PBXFileReference; lastKnownFileType = text; path = "sonar-project.properties"; sourceTree = "<group>"; };
 		6DEECACF2A32D1BB00B8E1E2 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DEECAD22A32D1BB00B8E1E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DEECAD42A32D1BB00B8E1E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -208,9 +214,51 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		6D73A7B82A3A6EB1000B3F24 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				6D73A7BD2A3A73EC000B3F24 /* UIKit */,
+				6D73A7B92A3A6EBF000B3F24 /* Loading */,
+				6D73A7BF2A3A7436000B3F24 /* Extensions */,
+				6D73A7BC2A3A73DC000B3F24 /* IBDesignables */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
+		6D73A7B92A3A6EBF000B3F24 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				6D73A7BA2A3A6EDF000B3F24 /* LoadingView.swift */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
+		6D73A7BC2A3A73DC000B3F24 /* IBDesignables */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = IBDesignables;
+			sourceTree = "<group>";
+		};
+		6D73A7BD2A3A73EC000B3F24 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		6D73A7BF2A3A7436000B3F24 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6D73A7C02A3A7448000B3F24 /* Image+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		6DEECAC62A32D1BB00B8E1E2 = {
 			isa = PBXGroup;
 			children = (
+				6D73A7C22A3C27B0000B3F24 /* sonar-project.properties */,
 				6DEECAD12A32D1BB00B8E1E2 /* RickAndMorty */,
 				6DEECAEB2A32D1BC00B8E1E2 /* RickAndMortyTests */,
 				6DEECAF52A32D1BC00B8E1E2 /* RickAndMortyUITests */,
@@ -237,6 +285,7 @@
 				6DEECB122A32D51400B8E1E2 /* Sections */,
 				6DEECB082A32D37500B8E1E2 /* Apiclient */,
 				6DEECB072A32D36E00B8E1E2 /* Manager */,
+				6D73A7B82A3A6EB1000B3F24 /* Commons */,
 				6DEECB062A32D35C00B8E1E2 /* Resources */,
 				6D73A7B22A39A443000B3F24 /* ViewModel */,
 			);
@@ -426,6 +475,7 @@
 			files = (
 				6DEECAE22A32D1BC00B8E1E2 /* LaunchScreen.storyboard in Resources */,
 				6DEECADF2A32D1BC00B8E1E2 /* Assets.xcassets in Resources */,
+				6D73A7C32A3C27B0000B3F24 /* sonar-project.properties in Resources */,
 				6DEECADA2A32D1BB00B8E1E2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +516,7 @@
 				6D73A7A32A396FD1000B3F24 /* RMGender.swift in Sources */,
 				6D73A7992A3969CE000B3F24 /* RMEndPoint.swift in Sources */,
 				6D73A7952A3968F0000B3F24 /* RMService.swift in Sources */,
+				6D73A7C12A3A7448000B3F24 /* Image+Extensions.swift in Sources */,
 				6DEECAD32A32D1BB00B8E1E2 /* AppDelegate.swift in Sources */,
 				6D73A7B12A39A1E0000B3F24 /* RMCharacterListView.swift in Sources */,
 				6DEECAD52A32D1BB00B8E1E2 /* SceneDelegate.swift in Sources */,
@@ -473,6 +524,7 @@
 				6D73A7972A39690F000B3F24 /* RMRequest.swift in Sources */,
 				6D73A7AA2A39A097000B3F24 /* RMCharacterListViewModel.swift in Sources */,
 				6D73A78B2A39592B000B3F24 /* RMEpisodeViewController.swift in Sources */,
+				6D73A7BB2A3A6EDF000B3F24 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,8 +700,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9VP3M3KHGQ;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = QA93CB9DN5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RickAndMorty/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -662,7 +716,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.idevart.RickAndMorty.RickAndMorty;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gonet.RickAndMorty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -676,8 +730,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9VP3M3KHGQ;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = QA93CB9DN5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RickAndMorty/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -690,7 +746,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.idevart.RickAndMorty.RickAndMorty;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gonet.RickAndMorty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -8,14 +8,13 @@
 import UIKit
 
 final class RMCharacterListView: UIView {
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("Unsuported")
     }
-
 }

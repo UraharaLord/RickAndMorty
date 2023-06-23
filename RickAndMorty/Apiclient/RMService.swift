@@ -8,29 +8,25 @@
 import Foundation
 
 final class RMService {
-    
     static let shared = RMService()
-    
-    private var tokenSesion: String = ""
     typealias Callback<T> = (Result<T, Error>) -> Void
+
+    private var tokenSesion: String = ""
     
-    init() {}
-    
-    /// save token in singleton instance
     public func setToken(from autToken: String) {
         tokenSesion = autToken
     }
-    
+
     // MARK: - Private
     private func request(from rmRequest: RMRequest) -> URLRequest? {
         guard let url = rmRequest.url else {
             return nil
         }
-        
+
         /// Set Http method Selection
-        var request = URLRequest (url: url)
-            request.httpMethod = rmRequest.httpMethodSelection.rawValue
-        
+        var request = URLRequest(url: url)
+        request.httpMethod = rmRequest.httpMethodSelection.rawValue
+
         /// Set Http Body if this is Available
         if rmRequest.isBodyData {
             request.httpBody = rmRequest.getBodyHttpData()
@@ -39,11 +35,11 @@ final class RMService {
         /// add headers and Rerturn URLRequest por urlSession
         return addHttpHeaderFields(urlRequest: request)
     }
-    
-    private func addHttpHeaderFields( urlRequest: URLRequest) -> URLRequest{
+
+    private func addHttpHeaderFields(urlRequest: URLRequest) -> URLRequest {
         var request = urlRequest
-            request.setValue("Content-Type", forHTTPHeaderField: "application/json")
-            request.setValue("Authorization", forHTTPHeaderField: tokenSesion)
+        request.setValue("Content-Type", forHTTPHeaderField: "application/json")
+        request.setValue("Authorization", forHTTPHeaderField: tokenSesion)
         return request
     }
     

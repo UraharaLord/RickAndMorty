@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - RMLocation
+
 struct RMCharacterLocation: Codable {
     let name: String
     let url: String

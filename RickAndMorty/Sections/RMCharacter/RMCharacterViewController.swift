@@ -8,14 +8,14 @@
 import UIKit
 
 class RMCharacterViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupScreen()
         serviceBind()
+//        LoadingView.show("Cargando")
     }
-    
+
     func setupScreen() {
         title = "Characters"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -24,7 +24,7 @@ class RMCharacterViewController: UIViewController {
 
 extension RMCharacterViewController {
     func serviceBind() {
-//   -----Form to call 1 with params-----------------------------------------------------------------------------------------------------
+        //   -----Form to call 1 with params-----------------------------------------------------------------------------------------------------
 //
 //        let request = RMRequest(endPoint: .character, queryParameters: [
 //            URLQueryItem(name: "name", value: "rick"),
@@ -42,7 +42,7 @@ extension RMCharacterViewController {
 //            }
 //        }
 
-//   -----Form to call 2 with parameters-----------------------------------------------------------------------------------------------------
+        //   -----Form to call 2 with parameters-----------------------------------------------------------------------------------------------------
 //        RMService.shared.execute(.listOfCharactersRequest, expecting: RMGetAllCharactersResponse.self) { result in
 //            if case .success(let characters) = result {
 //                print(characters)
@@ -52,15 +52,14 @@ extension RMCharacterViewController {
 //                dump(error)
 //            }
 //        }
-        
-//   ---Form to call 3 more simple-------------------------------------------------------------------------------------------------------
+
+        //   ---Form to call 3 more simple-------------------------------------------------------------------------------------------------------
         RMService.shared.getAllCharacters { result in
-            if case .success(let characters) = result {
+            if case let .success(characters) = result {
                 dump(characters)
-            } else if case .failure(let error) = result {
+            } else if case let .failure(error) = result {
                 dump(error)
             }
         }
     }
 }
-

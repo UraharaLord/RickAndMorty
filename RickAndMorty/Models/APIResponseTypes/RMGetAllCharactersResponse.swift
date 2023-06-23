@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - RMGetAllCharactersResponse
+
 struct RMGetAllCharactersResponse: Codable {
     struct Info: Codable {
         let count: Int
@@ -15,7 +16,7 @@ struct RMGetAllCharactersResponse: Codable {
         let next: String?
         let prev: String?
     }
-    
+
     let info: Info
     let results: [RMCharacter]
 }

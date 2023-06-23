@@ -10,10 +10,12 @@ import Foundation
 struct RMCharacterListViewModel {
     func fetchCharacters() {
         RMService.shared.getAllCharacters { result in
-            if case .success(let characters) = result {
+            if case let .success(characters) = result {
                 print(characters)
                 dump(characters)
-            } else if case .failure(let error) = result {
+            }
+            
+            if case let .failure(error) = result {
                 print(error)
                 dump(error)
             }
